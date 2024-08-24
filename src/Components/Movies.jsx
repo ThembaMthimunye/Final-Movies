@@ -56,6 +56,7 @@ const fetchData = async () => {
         navigate(`./MovieDetails/${id}`);
     };
     const currentPosts = filtered.slice(firstPostIndex, lastPostIndex);
+    const currentPosts1 = movies1.slice(firstPostIndex, lastPostIndex);
 
     return (
         <div className='bg-black '>
@@ -81,7 +82,7 @@ const fetchData = async () => {
                 <div className='bg-[ FFFFFF] text-white'>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-4 lg:mx-40">
                         {movies1.length > 0 ? (
-                            movies1.map((movie) => (
+                            currentPosts1.map((movie) => (
                                 <div
                                     key={movie.id}
                                     className="bg-[ FFFFFF] cursor-pointer border border-gray-300 rounded-lg overflow-hidden"
@@ -101,8 +102,13 @@ const fetchData = async () => {
                         ) : (
                             <p className="text-center col-span-full">No movies found</p>
                         )}
-                        
+                      
                     </div>
+                    <Pagination
+                            totalPosts={totalPosts}
+                            postsPerPage={postsPerPage}
+                            onPageChange={setCurrentPage}
+                        /> 
                     </div>
                 ) : (
                     <div className="bg-[ FFFFFF] text-white">
