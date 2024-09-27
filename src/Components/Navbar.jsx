@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ title }) => {
     return (
         <nav 
-            className="bg-[url('./assets/images/navimage.jpg')] bg-cover bg-center h-[30rem] bg-no-repeat"
+            className="bg-[url('./assets/images/navimage.jpg')] bg-cover bg-center bg-fixed h-[60vh]  lg:h-[60vh] bg-no-repeat"
         >
              
             <div className="relative flex items-center justify-between h-16 p-[70px]">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Spinner from './Spinner';
 
 const MovieDetails = () => {
     const [details, setDetails] = useState(null);
@@ -23,24 +24,24 @@ const MovieDetails = () => {
     }, [id]);
 
     if (!details) {
-        return <div>Loading...</div>;
+        return <div><Spinner/></div>;
     }
 
     return (
-        <div class="bg-black text-white ">
-            <div class="grid grid-cols-2  ">
+        <div class="bg-gradient-to-tl from-green-700 via-teal-800 to-cyan-900 text-white ">
+            <div class="grid grid-cols-1 place-items-center py-10 lg:grid-cols-2 lg:px-[10rem] ">
                 <div>
                     <img
-                        class="w-[40%] aspect-[1/1] border m-40 ml-[30rem] rounded border-solid border-black "
+                        class="w-[70%] aspect-[1/1] border mx-auto  rounded border-solid border-black "
                         src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
                         alt={details.title}
                     />
 
                 </div>
-                <div className=' mt-[12rem] mr-[30rem] '>
-                    <h1 class="text-center text-lg font-semibold truncate"> {details.title}</h1>
+                <div className=' text-justify px-[30px]'>
+                    <h1 class="text-center text-lg font-semibold "> {details.title}</h1>
                     <p class="text-center text-sm text-gray-500 "> {details.release_date}</p>
-                    <h1 className='mt-[3rem]'>{details.overview}</h1>
+                    <h1 className='mt-[1rem]'>{details.overview}</h1>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Pagination from './Pagination';
 import { FaSearch } from 'react-icons/fa';
 import Filter from './Filter';
+import Spinner from './Spinner';
 
 const Movies = () => {
     const navigate = useNavigate();
@@ -57,9 +58,11 @@ const fetchData = async () => {
     };
     const currentPosts = filtered.slice(firstPostIndex, lastPostIndex);
     const currentPosts1 = movies1.slice(firstPostIndex, lastPostIndex);
-
+    if (!movies1 || !movies) {
+        return <div><Spinner/></div>;
+    }
     return (
-        <div className='bg-black '>
+        <div className='bg-gradient-to-tl from-green-700 via-teal-800 to-cyan-900'>
              <Filter movies={movies} setFiltered={setFiltered} activeGenre={activeGenre} setActiveGenre={setActiveGenre}/>
         
             <div className='bg-grey w-full rounded-lg h-full p-15 text-white'>
@@ -79,13 +82,13 @@ const fetchData = async () => {
                 </div>
 
                 {input ? (
-                <div className='bg-[ FFFFFF] text-white'>
+                <div className='bg-[ FFFFFF] text-white ' >
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-4 lg:mx-40">
                         {movies1.length > 0 ? (
                             currentPosts1.map((movie) => (
                                 <div
                                     key={movie.id}
-                                    className="bg-[ FFFFFF] cursor-pointer border border-gray-300 rounded-lg overflow-hidden"
+                                    className="bg-[ FFFFFF] cursor-pointer border border-red-500 rounded-lg overflow-hidden"
                                     onClick={() => goToDetails(movie.id)}
                                 >
                                     <img
@@ -100,7 +103,7 @@ const fetchData = async () => {
                                 </div>
                             ))
                         ) : (
-                            <p className="text-center col-span-full">No movies found</p>
+                            <p className="text-center col-span-full"><Spinner/></p>
                         )}
                       
                     </div>
@@ -112,12 +115,12 @@ const fetchData = async () => {
                     </div>
                 ) : (
                     <div className="bg-[ FFFFFF] text-white">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-4 lg:mx-40">
+                        <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-5 mx-4 lg:mx-40">
                             
                             {currentPosts.map((movie) => (
                                 <div
                                     key={movie.id}
-                                    className="bg-[ FFFFFF] cursor-pointer border border-gray-300 rounded-lg overflow-hidden"
+                                    className="bg-[ FFFFFF] cursor-pointer border border-red-500 rounded-lg overflow-hidden"
                                     onClick={() => goToDetails(movie.id)}
                                 >
                                     <img
